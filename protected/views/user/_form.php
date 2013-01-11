@@ -29,8 +29,9 @@
 
 
 	<div class="row">
-        <?php echo $form->labelEx($model,'user_role'); ?>
+        <?php echo $form->labelEx($model,'role_id'); ?>
 		<?php echo CHtml::activeDropDownList($model,'role_id',CHtml::listData(Role::model()->findAll(), 'id', 'name'), array('prompt' => '-- Please Select --')) ?>
+        <?php echo $form->error($model,'role_id'); ?>
 	</div>
 
 	<div class="row buttons">

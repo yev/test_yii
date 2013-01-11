@@ -19,8 +19,10 @@
  * @version $Id: $
  */
 return array (
-  'link_title_user_profile_msg' => 'Жми здесь, чтоб открыть профиль пользователя',
+  'role.name' => 'Роль',
+  'user.password' => 'Пароль',
   'Logged User Title' => 'Имя авторизированого пользователя',
   'contact' => 'Наши контакты',
   'hello' => 'Добро пожаловать!',
+  'link_title_user_profile_msg' => 'Жми здесь, чтоб открыть профиль пользователя',
 );

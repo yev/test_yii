@@ -86,10 +86,10 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_name' => 'User Name',
-			'user_password' => 'User Password',
+			'user_name' => Yii::t('app','Logged User Title'),
+			'user_password' => Yii::t('app','user.password'),
 			'user_salt' => 'User Salt',
-			'role_id' => 'Role',
+			'role_id' => Yii::t('app','role.name'),
 		);
 	}
 

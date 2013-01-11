@@ -19,8 +19,10 @@
  * @version $Id: $
  */
 return array (
-  'link_title_user_profile_msg' => 'Cliquez ici pour ouvrire le compte de l\'utilisateur',
+  'role.name' => 'Role',
+  'user.password' => 'Le mote de passe',
   'Logged User Title' => 'Le nom de l\'utilisateur connecté',
   'contact' => 'Nous écrire',
   'hello' => 'Bienvenue',
+  'link_title_user_profile_msg' => 'Cliquez ici pour ouvrire le compte de l\'utilisateur',
 );
