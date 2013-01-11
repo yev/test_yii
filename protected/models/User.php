@@ -27,8 +27,9 @@ class User extends CActiveRecord
         {
             if($this->isNewRecord)
             {
-                $this->user_salt=mcrypt_create_iv(30);
-                $this->user_pass=crypt($this->user_pass, $this->user_salt);
+                $this->user_salt=   utf8_encode( mcrypt_create_iv(30) );
+                $newPassword =  utf8_encode( crypt($this->user_pass, $this->user_salt) );
+                $this->user_pass = $newPassword;
             }
             return true;
         }

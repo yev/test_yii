@@ -60,6 +60,7 @@ class LoginForm extends CFormModel
 	 */
 	public function login()
 	{
+        Yii::log('login',CLogger::LEVEL_INFO,'yev.debug');
 		if($this->_identity===null)
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
