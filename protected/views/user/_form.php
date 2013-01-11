@@ -17,14 +17,20 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_name'); ?>
-		<?php echo $form->textField($model,'user_name',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->textField($model,'user_name',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'user_name'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'user_pass'); ?>
-		<?php echo $form->textField($model,'user_pass',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'user_pass'); ?>
+		<?php echo $form->labelEx($model,'user_password'); ?>
+		<?php echo $form->textField($model,'user_password',array('size'=>45, 'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'user_password'); ?>
+	</div>
+
+
+	<div class="row">
+        <?php echo $form->labelEx($model,'user_role'); ?>
+		<?php echo CHtml::activeDropDownList($model,'role_id',CHtml::listData(Role::model()->findAll(), 'id', 'name'), array('prompt' => '-- Please Select --')) ?>
 	</div>
 
 	<div class="row buttons">

@@ -122,7 +122,6 @@ class UserController extends Controller
 	 */
 	public function actionIndex()
 	{
-        Yii::log('user page',CLogger::LEVEL_INFO,'yev.debug');
 		$dataProvider=new CActiveDataProvider('User');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

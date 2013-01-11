@@ -1,53 +1,33 @@
 <?php
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "role".
  *
- * The followings are the available columns in table 'user':
+ * The followings are the available columns in table 'role':
  * @property integer $id
- * @property string $user_name
- * @property string $user_password
- * @property string $user_salt
- * @property integer $role_id
+ * @property string $name
  *
  * The followings are the available model relations:
- * @property Role $role
+ * @property User[] $users
  */
-class User extends CActiveRecord
+class Role extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return Role the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
 
-    protected function beforeSave()
-    {
-        if(parent::beforeSave())
-        {
-            if($this->isNewRecord)
-            {
-                $this->user_salt=   utf8_encode( mcrypt_create_iv(30) );
-                $newPassword =  utf8_encode( crypt($this->user_password, $this->user_salt) );
-                $this->user_password = $newPassword;
-            }
-            return true;
-        }
-        else
-            return false;
-    }
-
-
-    /**
+	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'user';
+		return 'role';
 	}
 
 	/**
@@ -58,12 +38,11 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_name, user_password, role_id', 'required'),
-			array('role_id', 'numerical', 'integerOnly'=>true),
-			array('user_name, user_salt', 'length', 'max'=>45),
+			array('name', 'required'),
+			array('name', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_name, user_password, user_salt, role_id', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,7 +54,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'role' => array(self::BELONGS_TO, 'Role', 'role_id'),
+			'users' => array(self::HAS_MANY, 'User', 'role_id'),
 		);
 	}
 
@@ -86,10 +65,7 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_name' => 'User Name',
-			'user_password' => 'User Password',
-			'user_salt' => 'User Salt',
-			'role_id' => 'Role',
+			'name' => 'Name',
 		);
 	}
 
@@ -105,13 +81,11 @@ class User extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('user_name',$this->user_name,true);
-		$criteria->compare('user_password',$this->user_password,true);
-		$criteria->compare('user_salt',$this->user_salt,true);
-		$criteria->compare('role_id',$this->role_id);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+
 }

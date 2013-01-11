@@ -13,12 +13,16 @@
 	<?php echo CHtml::encode($data->user_name); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('user_pass')); ?>:</b>
-	<?php echo CHtml::encode($data->user_pass); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('user_password')); ?>:</b>
+	<?php echo CHtml::encode($data->user_password); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user_salt')); ?>:</b>
 	<?php echo CHtml::encode($data->user_salt); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('role_id')); ?>:</b>
+	<?php echo CHtml::encode($data->role_id); ?>
 	<br />
 
 
