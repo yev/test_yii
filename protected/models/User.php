@@ -15,6 +15,8 @@
  */
 class User extends CActiveRecord
 {
+
+	public $user_password_repeat;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -31,7 +33,8 @@ class User extends CActiveRecord
         {
             if($this->isNewRecord)
             {
-                $this->user_salt=   utf8_encode( mcrypt_create_iv(30) );
+                //$this->user_salt=   utf8_encode( mcrypt_create_iv(30) );//works only for since PHP 5.4 new function
+                $this->user_salt= '4kjh66';//temporary for PHP 5.3
                 $newPassword =  utf8_encode( crypt($this->user_password, $this->user_salt) );
                 $this->user_password = $newPassword;
             }
@@ -58,12 +61,14 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_name, user_password, role_id', 'required'),
+			array('user_password_repeat', 'safe'),
+			array('user_name, user_password, user_password_repeat, role_id', 'required'),
 			array('role_id', 'numerical', 'integerOnly'=>true),
 			array('user_name, user_salt', 'length', 'max'=>45),
+			array('user_password', 'compare'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_name, user_password, user_salt, role_id', 'safe', 'on'=>'search'),
+			array('id, user_name, user_password, user_password_repeat, user_salt, role_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,6 +93,7 @@ class User extends CActiveRecord
 			'id' => 'ID',
 			'user_name' => Yii::t('app','Logged User Title'),
 			'user_password' => Yii::t('app','user.password'),
+			'user_password_repeat'=> Yii::t('app','user.password.confirmation'),
 			'user_salt' => 'User Salt',
 			'role_id' => Yii::t('app','role.name'),
 		);

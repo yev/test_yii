@@ -23,8 +23,14 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'user_password'); ?>
-		<?php echo $form->textField($model,'user_password',array('size'=>45, 'maxlength'=>45)); ?>
+		<?php echo $form->passwordField($model,'user_password',array('size'=>45, 'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'user_password'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'user_password_repeat'); ?>
+		<?php echo $form->passwordField($model,'user_password_repeat',array('size'=>45, 'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'user_password_repeat'); ?>
 	</div>
 
 
